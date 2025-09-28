@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>GAREZA Brewery House · Hub cervecero</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root{
+    --bg:#0b1020; --ink:#e9ecf1; --muted:#9aa3b2; --card:#171c2e; --card2:#12172a; --border:#24304a;
+    --accent:#55c2ff; --accent-ink:#001521; --ok:#23c26b; --warn:#ff6b6b;
+    --r:16px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    --grad: radial-gradient(1200px 600px at 90% -10%, #1f2a50 0%, transparent 60%),
+            radial-gradient(800px 400px at -10% 20%, #0b7fab33 0%, transparent 60%),
+            linear-gradient(180deg, #0b1020 0%, #0b1020 60%, #0a0f1e 100%);
+  }
+  [data-theme="light"]{
+    --bg:#f7f7f9; --ink:#222; --muted:#666; --card:#fff; --card2:#f3f4f8; --border:#e6e6ea;
+    --accent:#0b7fab; --accent-ink:#fff; --shadow:0 10px 24px rgba(16,24,40,.08);
+    --grad: radial-gradient(1200px 600px at 90% -10%, #e7f8ff 0%, transparent 60%),
+            radial-gradient(800px 400px at -10% 20%, #f1f5ff 0%, transparent 60%),
+            linear-gradient(180deg, #f7f7f9 0%, #f7f7f9 60%, #f3f4f8 100%);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.45}
+  a{color:var(--accent); text-decoration:none}
+  header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(140%) blur(8px);
+         background:color-mix(in srgb, var(--bg) 72%, transparent); border-bottom:1px solid var(--border)}
+  .wrap{max-width:1060px; margin:0 auto; padding:18px 22px}
+  .row{display:flex; justify-content:space-between; align-items:center; gap:12px}
+  .brand{display:flex; align-items:center; gap:12px}
+  .brand__logo{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-weight:800}
+  .hint{color:var(--muted); font-size:.92rem}
+  .nav{display:flex; gap:10px; flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+  .btn:hover{transform:translateY(-1px)}
+  .btn--accent{background:var(--accent); color:var(--accent-ink); border-color:transparent}
+  .btn--ghost{background:transparent}
+  .toggle{cursor:pointer}
+
+  .hero{background:var(--grad); border-bottom:1px solid var(--border)}
+  .hero__grid{display:grid; grid-template-columns:1.2fr .8fr; gap:26px; align-items:center}
+  h1{margin:.2rem 0 .6rem; font-size:clamp(26px,4.5vw,42px)}
+  .sub{margin:0 0 1rem; color:var(--muted)}
+  .cta{display:flex; gap:10px; flex-wrap:wrap}
+  .stats{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px}
+  .stat{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:12px; text-align:center}
+  .stat b{display:block; font-size:1.08rem}
+  .kettle{aspect-ratio:4/3; border-radius:18px; border:1px solid var(--border); background:var(--card2); box-shadow:var(--shadow); display:grid; place-items:center}
+
+  .grid{display:grid; gap:14px; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); margin-top:14px}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px; min-height:190px}
+  .card h3{margin:.1rem 0 .2rem; font-size:1.05rem}
+  .card p{margin:0; color:var(--muted)}
+  .pill{display:inline-block; font-size:.78rem; padding:3px 8px; border-radius:999px; border:1px solid var(--border); background:color-mix(in srgb, var(--accent) 10%, transparent)}
+  .icon{width:24px; height:24px}
+  .card .actions{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap}
+
+  footer{border-top:1px solid var(--border)}
+  @media (max-width:880px){ .hero__grid{grid-template-columns:1fr} .stats{grid-template-columns:repeat(2,1fr)} }
+  @media print{ header{position:static; backdrop-filter:none} .btn,.cta{display:none} body{background:#fff; color:#000} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap row">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">GZ</div>
+      <div>
+        <div style="font-weight:700">GAREZA Brewery House</div>
+        <div class="hint">Hub cervecero · Blonde Ale “Hop Bomb Light” 30&nbsp;L</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a class="btn btn--ghost" href="#tools">Herramientas</a>
+      <a class="btn btn--ghost" href="#about">Acerca</a>
+      <button class="btn toggle" id="themeBtn" aria-label="Cambiar tema">🌗 Tema</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <h1>Tu hub cervecero GAREZA</h1>
+      <p class="sub">Acceso rápido a <b>Receta</b>, <b>Protocolos</b> y <b>Calculadora de Densidad</b> para la cocción actual.</p>
+      <div class="cta">
+        <a class="btn btn--accent" href="recetas/blonde_hop_bomb.html">📜 Ver receta + brewday</a>
+        <a class="btn" href="apps/density.html">🧪 Calculadora de densidad</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="hint">Batch</span><b>30 L</b></div>
+        <div class="stat"><span class="hint">OG</span><b>1.046–1.047</b></div>
+        <div class="stat"><span class="hint">Prehervor</span><b>40 L @ 1.034–1.035</b></div>
+        <div class="stat"><span class="hint">Whirlpool</span><b>80 °C · 20′</b></div>
+        <div class="stat"><span class="hint">Dry hop total</span><b>135 g</b></div>
+      </div>
+    </div>
+    <div class="kettle">
+      <svg width="120" height="120" viewBox="0 0 200 200" class="icon" aria-hidden="true">
+        <rect x="30" y="70" width="140" height="90" rx="16" fill="none" stroke="currentColor" stroke-width="8"/>
+        <rect x="50" y="55" width="100" height="12" rx="4" fill="currentColor"/>
+        <path d="M35 95 q-20 -10 0 -20" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        <path d="M165 95 q20 -10 0 -20" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        <path d="M80 40 q-8 -14 6 -20" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        <path d="M105 38 q-8 -14 6 -20" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        <path d="M130 40 q-8 -14 6 -20" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" id="tools">
+  <h2 style="margin:18px 0 10px">Herramientas</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="pill">Brewday</div>
+      <div style="display:flex; align-items:center; gap:10px">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M8 4v16M16 4v16M4 9h16M4 15h16"/></svg>
+        <h3 style="margin:0">Receta + cronograma</h3>
+      </div>
+      <p>“Hop Bomb Light” 30 L. Macerado 66 °C, whirlpool 80 °C 20′, doble dry hop (Citra + Simcoe).</p>
+      <div class="actions">
+        <a class="btn btn--accent" href="recetas/blonde_hop_bomb.html">Abrir receta</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="pill">Higiene</div>
+      <div style="display:flex; align-items:center; gap:10px">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/><path d="M2 5h3l2 12h12l2-9H6"/></svg>
+        <h3 style="margin:0">Protocolo de limpieza</h3>
+      </div>
+      <p>Ollas, bomba, mangueras y enfriador. Alcalino → enjuague → sanitizado.</p>
+      <div class="actions">
+        <a class="btn btn--accent" href="protocolos/protocolo_limpieza.html">Abrir protocolo</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="pill">Packaging</div>
+      <div style="display:flex; align-items:center; gap:10px">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 3h8v4H8z"/><path d="M7 7h10v14H7z"/></svg>
+        <h3 style="margin:0">Botellas: limpieza + sanidad</h3>
+      </div>
+      <p>Checklist: pre-limpieza, alcalino/cáustico, peracético/Star San, escurrido y envasado.</p>
+      <div class="actions">
+        <a class="btn btn--accent" href="protocolos/protocolo_limpieza_botellas.html">Abrir protocolo</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="pill">Cálculo</div>
+      <div style="display:flex; align-items:center; gap:10px">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2h12v4H6z"/><path d="M10 6v14a2 2 0 1 0 4 0V6"/><path d="M6 10h12"/></svg>
+        <h3 style="margin:0">Calculadora de densidad</h3>
+      </div>
+      <p>Corrige por temperatura (°C→°F polinomio) y calcula agua o azúcar a añadir.</p>
+      <div class="actions">
+        <a class="btn btn--accent" href="apps/density.html">Abrir calculadora</a>
+      </div>
+    </article>
+  </div>
+
+  <section id="about" style="margin:20px 0">
+    <h2 style="margin:18px 0 6px">Acerca de esta cocción</h2>
+    <p class="hint">
+      Blonde moderna de alta tomabilidad: amargor bajo (25–28 IBU desde whirlpool), Citra + Simcoe en DH (135 g, 4.5 g/L),
+      color claro y final seco. Olla de hervor 65 L — batch cómodo y seguro.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <div class="hint">© GAREZA Brewery House · Hub · v1.0</div>
+    <div class="nav">
+      <a class="btn" href="recetas/blonde_hop_bomb.html">Receta</a>
+      <a class="btn" href="protocolos/protocolo_limpieza.html">Limpieza</a>
+      <a class="btn" href="protocolos/protocolo_limpieza_botellas.html">Botellas</a>
+      <a class="btn" href="apps/density.html">Calculadora</a>
+      <button class="btn" onclick="window.print()">🖨️ Imprimir</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Toggle light/dark
+  const btn = document.getElementById('themeBtn');
+  const saved = localStorage.getItem('theme');
+  if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+  btn.addEventListener('click', ()=>{
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+</script>
+
+</body>
+</html>
