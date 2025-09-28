@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Ajuste de Densidad · Corrección por Temperatura · Agua/Azúcar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root{--bg:#f7f7f9;--ink:#222;--muted:#666;--card:#fff;--border:#e8e8ef;--accent:#0b7fab;--ok:#2e7d32;--warn:#c62828;--r:14px}
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+  header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid var(--border);z-index:10}
+  .wrap{max-width:980px;margin:0 auto;padding:22px}
+  h1{margin:.2rem 0 0;font-size:clamp(22px,3.5vw,34px)} .sub{margin:.2rem 0 0;color:var(--muted)}
+  section{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin:16px 0}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  label{font-weight:600} input,select{width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+  .row{display:grid;grid-template-columns:180px 1fr;gap:10px;align-items:center}
+  .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:var(--accent);color:#fff;cursor:pointer}
+  .note{border-left:4px solid var(--accent);background:#eef7fb;padding:10px 12px;border-radius:8px;margin:.8rem 0}
+  .danger{border-left:4px solid var(--warn);background:#fdecec}
+  .cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff}
+  .out{font-family:ui-monospace,Consolas,Menlo,monospace;background:#fafafa;border:1px dashed var(--border);border-radius:8px;padding:10px}
+  small{color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Ajuste de Densidad (SG)</h1>
+    <p class="sub">Corrige la lectura por temperatura y calcula agua o azúcar/extracto para llegar a tu gravedad objetivo.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>1) Datos de entrada</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="row"><label>Volumen actual (L)</label><input id="volL" type="number" step="0.01" value="40"></div>
+        <div class="row"><label>Lectura densímetro (SG)</label><input id="sgRead" type="number" step="0.001" value="1.035"></div>
+        <div class="row"><label>Temperatura de lectura (°C)</label><input id="tempC" type="number" step="0.1" value="25"></div>
+        <div class="row"><label>Calibración del densímetro (°C)</label><input id="calC" type="number" step="0.1" value="20"></div>
+      </div>
+      <div class="card">
+        <div class="row"><label>Gravedad objetivo (SG)</label><input id="sgTarget" type="number" step="0.001" value="1.046"></div>
+        <div class="row">
+          <label>Fermentable para subir densidad</label>
+          <select id="ferm">
+            <option value="384">Dextrosa / Sacarosa (~46 ppg)</option>
+            <option value="300">DME (~37 ppg)</option>
+            <option value="230">LME (~28 ppg)</option>
+          </select>
+        </div>
+        <div class="row"><label>Unidad de masa</label>
+          <select id="massUnit">
+            <option value="kg">kg</option>
+            <option value="g">g</option>
+          </select>
+        </div>
+        <div><button class="btn" onclick="calc()">Calcular</button></div>
+      </div>
+    </div>
+    <div class="note">Si tu objetivo es <b>menor</b> que la lectura corregida, se sugerirá <b>agregar agua</b>. Si es <b>mayor</b>, te dirá cuánta <b>dextrosa/DME/LME</b> agregar.</div>
+  </section>
+
+  <section>
+    <h2>2) Resultados</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Corrección por temperatura</h3>
+        <div class="out">
+          <div>SG leída: <span id="o_sgRead">—</span> @ <span id="o_temp">—</span> °C</div>
+          <div>SG corregida a <span id="o_cal">—</span> °C: <b id="o_sgCorr">—</b></div>
+        </div>
+        <small>Se convierte °C→°F y se aplica polinomio en °F. Ver fórmulas abajo.</small>
+      </div>
+
+      <div class="card">
+        <h3>Estado actual del mosto</h3>
+        <div class="out">
+          <div>Volumen actual: <b id="o_vol">—</b> L</div>
+          <div>Gravity points actuales: <b id="o_pts">—</b> (pts)</div>
+          <div>Puntos·Litro totales: <b id="o_ptsl">—</b> (pts·L)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Objetivo</h3>
+        <div class="out">
+          <div>SG objetivo: <b id="o_sgT">—</b> → <span id="o_ptsT">—</span> pts</div>
+          <div>Total pts·L objetivo (con volumen actual): <b id="o_ptslT">—</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Si querés <u>bajar</u> densidad (diluir con agua)</h3>
+        <div class="out">
+          <div>Volumen final necesario: <b id="o_vNew">—</b> L</div>
+          <div>Agua a agregar: <b id="o_addWater">—</b> L</div>
+        </div>
+        <small class="danger">Sólo aplica si la SG objetivo es <b>menor</b> que la SG corregida actual.</small>
+      </div>
+
+      <div class="card">
+        <h3>Si querés <u>subir</u> densidad (agregar fermentables)</h3>
+        <div class="out">
+          <div>Puntos·Litro a sumar: <b id="o_needPtsL">—</b></div>
+          <div>Masa necesaria (<span id="o_fermName">—</span>): <b id="o_fermMass">—</b> <span id="o_mu">kg</span></div>
+        </div>
+        <small class="danger">Sólo aplica si la SG objetivo es <b>mayor</b> que la SG corregida actual.</small>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3) Fórmulas usadas (resumen)</h2>
+    <ul>
+      <li><b>Conversión:</b> <code>F = C × 9/5 + 32</code></li>
+      <li><b>Polinomio en °F (corrección de densidad del agua):</b>
+        <div class="out"><code>
+f(F)=1.00130346 − 0.000134722124·F + 2.04052596e−6·F² − 2.32820948e−9·F³<br/>
+SG_corr = SG_leída × f(F_lectura) / f(F_calibración)
+        </code></div>
+      </li>
+      <li><b>Gravity points:</b> <code>pts = (SG − 1) × 1000</code></li>
+      <li><b>Puntos·Litro totales:</b> <code>PT = pts × Volumen(L)</code></li>
+      <li><b>Dilución con agua:</b> <code>V_nuevo = PT_actual / pts_obj</code>, <code>Agua = V_nuevo − V_actual</code></li>
+      <li><b>Fermentables para subir:</b> con rendimiento <em>R</em> en pts·L/kg → <code>Masa(kg) = (PT_obj − PT_act) / R</code></li>
+      <li>Rendimientos típicos: Dextrosa/Sacarosa ≈ <b>384</b>; DME ≈ <b>300</b>; LME ≈ <b>230</b> (pts·L/kg).</li>
+    </ul>
+  </section>
+
+</main>
+
+<script>
+function toF(c){ return c * 9/5 + 32; }
+// Polinomio de corrección en °F (Sean Terrill / uso común homebrewing)
+function fF(F){
+  return 1.00130346 - 0.000134722124*F + 2.04052596e-6*F*F - 2.32820948e-9*F*F*F;
+}
+function toPts(sg){ return (sg - 1) * 1000; }
+
+function calc(){
+  const volL = parseFloat(document.getElementById('volL').value);
+  const sgRead = parseFloat(document.getElementById('sgRead').value);
+  const tempC = parseFloat(document.getElementById('tempC').value);
+  const calC  = parseFloat(document.getElementById('calC').value);
+  const sgTarget = parseFloat(document.getElementById('sgTarget').value);
+  const R = parseFloat(document.getElementById('ferm').value);
+  const fermName = document.getElementById('ferm').selectedOptions[0].textContent.split(' (')[0];
+  const massUnit = document.getElementById('massUnit').value;
+
+  // Corrección de SG (°C→°F → polinomio en °F)
+  const sgCorr = sgRead * ( fF(toF(tempC)) / fF(toF(calC)) );
+
+  // Puntos actuales
+  const ptsCur = toPts(sgCorr);
+  const PT_cur = ptsCur * volL;
+
+  // Objetivo (mismo volumen actual)
+  const ptsTgt = toPts(sgTarget);
+  const PT_tgt_sameVol = ptsTgt * volL;
+
+  // DILUCIÓN (si objetivo < actual)
+  const V_new = PT_cur / ptsTgt;      // L
+  const addWater = V_new - volL;      // L
+
+  // SUBIR DENSIDAD (si objetivo > actual)
+  const needPT = PT_tgt_sameVol - PT_cur;  // pts·L
+  const massKg = needPT > 0 ? (needPT / R) : 0; // kg
+
+  // Conversión de unidad
+  const massDisp = massUnit === 'g' ? massKg*1000 : massKg;
+  const mu = massUnit === 'g' ? 'g' : 'kg';
+
+  // Pintar
+  const fmt = (x, d=2)=> (isFinite(x)? x.toFixed(d) : '—');
+
+  document.getElementById('o_sgRead').textContent = fmt(sgRead,3);
+  document.getElementById('o_temp').textContent   = fmt(tempC,1);
+  document.getElementById('o_cal').textContent    = fmt(calC,1);
+  document.getElementById('o_sgCorr').textContent = fmt(sgCorr,3);
+
+  document.getElementById('o_vol').textContent    = fmt(volL,2);
+  document.getElementById('o_pts').textContent    = fmt(ptsCur,1);
+  document.getElementById('o_ptsl').textContent   = fmt(PT_cur,1);
+
+  document.getElementById('o_sgT').textContent    = fmt(sgTarget,3);
+  document.getElementById('o_ptsT').textContent   = fmt(ptsTgt,1);
+  document.getElementById('o_ptslT').textContent  = fmt(PT_tgt_sameVol,1);
+
+  document.getElementById('o_vNew').textContent   = ptsTgt>0 ? fmt(V_new,2) : '—';
+  document.getElementById('o_addWater').textContent = addWater>0 ? fmt(addWater,2) : '0.00';
+
+  document.getElementById('o_needPtsL').textContent = needPT>0 ? fmt(needPT,1) : '0.0';
+  document.getElementById('o_fermName').textContent = fermName;
+  document.getElementById('o_fermMass').textContent = needPT>0 ? fmt(massDisp, massUnit==='g'?0:3) : '0';
+  document.getElementById('o_mu').textContent = mu;
+}
+window.addEventListener('DOMContentLoaded', calc);
+</script>
+</body>
+</html>

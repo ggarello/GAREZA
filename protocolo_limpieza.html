@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Protocolo de Limpieza y Desinfección - Cervecería Artesanal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#f7f7f9;
+      --ink:#222;
+      --muted:#666;
+      --card:#ffffff;
+      --accent:#0b7fab;
+      --ok:#2e7d32;
+      --warn:#b26a00;
+      --border:#e6e6ea;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Arial,sans-serif;
+      color:var(--ink); background:var(--bg); line-height:1.45;
+    }
+    header{
+      position:static; top:0; backdrop-filter: saturate(140%) blur(6px);
+      background:rgba(247,247,249,.8); border-bottom:1px solid var(--border); z-index:10;
+    }
+    .wrap{max-width:920px; margin:0 auto; padding:24px}
+    h1{margin:6px 0 12px; font-size:clamp(22px,3.5vw,34px)}
+    .sub{color:var(--muted); margin:0 0 12px}
+    nav.toc{
+      display:grid; gap:10px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      margin:16px 0 22px;
+    }
+    nav.toc a{
+      text-decoration:none; color:var(--accent); background:var(--card);
+      border:1px solid var(--border); padding:10px 12px; border-radius:10px;
+    }
+    section.card{
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:18px 18px 8px; margin:18px 0;
+    }
+    section.card h2{margin:0 0 10px; font-size:22px}
+    section.card h3{margin:14px 0 8px; font-size:18px}
+    p.lead{margin:.2rem 0 1rem; color:var(--muted)}
+    ul,ol{margin:.2rem 0 1rem 1.2rem}
+    li{margin:.2rem 0}
+    .hint{font-size:.95rem; color:var(--muted)}
+    .badge{display:inline-block; font-size:.78rem; padding:3px 8px; border-radius:999px; border:1px solid var(--border); background:#fff; color:var(--muted); margin-left:6px}
+    .ok{color:var(--ok)} .warn{color:var(--warn)}
+    .grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .checklist li{list-style:none; margin:8px 0; display:fixed  ; gap:10px; align-items:start}
+    .checklist input[type="checkbox"]{margin-top:3px; transform:scale(1.15)}
+    .note{border-left:4px solid var(--accent); background:#eef7fb; padding:10px 12px; border-radius:8px; margin:.8rem 0}
+    .danger{border-left:4px solid #c62828; background:#fdecec}
+    code{background:#f3f3f6; border:1px solid var(--border); padding:.1rem .35rem; border-radius:6px}
+    @media print{
+      header{position:static; backdrop-filter:none; background:#fff}
+      nav.toc{display:none}
+      body{background:#fff}
+      .wrap{padding:0}
+      a{color:#000; text-decoration:none}
+      .card{page-break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Protocolo de Limpieza y Desinfección</h1>
+      <p class="sub">Setup: 3 ollas inox 50 L · filtro Palmer · bomba inox grado alimenticio · enfriador de placas · mangueras grado alimenticio · acoples rápidos · utensilios</p>
+      <nav class="toc">
+        <a href="#ollas">1. Limpieza de ollas de acero inoxidable (50 L)</a>
+        <a href="#bomba-mangueras">2. Bomba, mangueras y acoples</a>
+        <a href="#posthervor">3. Fermentadores y utensilios (post-hervor)</a>
+        <a href="#desinfeccion">4. Desinfección antes de uso</a>
+        <a href="#rutina">5. Rutina práctica</a>
+        <a href="#mantenimiento">6. Mantenimiento: piedra de cerveza</a>
+        <a href="#enfriador">7. Enfriador de placas: limpieza/sanitizado</a>
+        <a href="#cobre">8. Si el enfriador tiene cobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section id="ollas" class="card">
+      <h2>1) Limpieza de ollas de acero inoxidable (50 L) <span class="badge">Recirculación</span></h2>
+      <p class="lead">Objetivo: remover proteínas, trub y lúpulo antes de que sequen y formen biofilm.</p>
+
+      <h3>Enjuague inmediato post-cocción</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Vaciar la olla mientras está tibia (no esperar a que enfríe por completo).</li>
+        <li><input type="checkbox"> Enjuagar con agua caliente a presión para soltar restos visibles.</li>
+      </ul>
+
+      <h3>Limpieza alcalina (PBW o similar)</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Preparar <strong>PBW 10–15 g/L</strong> en agua caliente (50–65 °C).</li>
+        <li><input type="checkbox"> Llenar parcialmente y <strong>recircular 15–20 min</strong> con la bomba pasando por <em>mangueras</em> y <em>acoples</em>.</li>
+        <li><input type="checkbox"> Cepillar bordes, válvulas y el <em>filtro Palmer</em> si hace falta.</li>
+      </ul>
+
+      <h3>Enjuague</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Enjuagar con agua caliente hasta que no queden restos jabonosos (sin espuma resbaladiza).</li>
+      </ul>
+
+      <div class="note">
+        <strong>Tip:</strong> aprovechá la misma solución alcalina para limpiar olla 2 → olla 3, y recién ahí descartar.
+      </div>
+    </section>
+
+    <section id="bomba-mangueras" class="card">
+      <h2>2) Bomba, mangueras y acoples rápidos</h2>
+      <div class="grid">
+        <div>
+          <h3>Limpieza por recirculación</h3>
+          <ul class="checklist">
+            <li><input type="checkbox"> Hacer pasar la misma <strong>solución alcalina</strong> (10–15 g/L) por todo el circuito.</li>
+            <li><input type="checkbox"> Alternar el sentido (ida/vuelta) para barrer puntos muertos.</li>
+            <li><input type="checkbox"> Enjuagar con agua clara varios minutos.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Desarme puntual</h3>
+          <ul class="checklist">
+            <li><input type="checkbox"> Si hubo suciedad pesada, desmontar acoples/válvulas.</li>
+            <li><input type="checkbox"> Cepillar y sumergir en solución alcalina; enjuagar bien.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="hint">No dejes mangueras con agua estancada; colgarlas para escurrido completo.</p>
+    </section>
+
+    <section id="posthervor" class="card">
+      <h2>3) Fermentadores y utensilios (todo lo que toca mosto frío) <span class="badge ok">Crítico</span></h2>
+      <p class="lead">Desde el final del hervor, todo contacto debe estar <strong>limpio + sanitizado</strong>.</p>
+
+      <h3>Limpieza</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Agua caliente + detergente alcalino.</li>
+        <li><input type="checkbox"> Enjuague completo.</li>
+      </ul>
+
+      <h3>Sanitización</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Aplicar <strong>Star San</strong> (según etiqueta, contacto 1–2 min) o <strong>ácido peracético</strong> (uso cervecero típico 0,1–0,2%).</li>
+        <li><input type="checkbox"> Drenar y <strong>no enjuagar</strong> si es “no rinse”.</li>
+        <li><input type="checkbox"> Mantener tapado hasta el uso.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Incluye:</strong> fermentadores, airlocks, cucharas post-hervor, densímetro/probeta, cañas de trasvase, mangueras de frío.
+      </div>
+    </section>
+
+    <section id="desinfeccion" class="card">
+      <h2>4) Desinfección antes de usar (resumen)</h2>
+      <ul>
+        <li><strong>Ollas:</strong> solo limpieza. El hervor esteriliza.</li>
+        <li><strong>Todo lo post-hervor:</strong> limpieza + sanitización inmediata antes del contacto.</li>
+      </ul>
+    </section>
+
+    <section id="rutina" class="card">
+      <h2>5) Rutina práctica</h2>
+      <div class="grid">
+        <div>
+          <h3>Después de cada cocción</h3>
+          <ul class="checklist">
+            <li><input type="checkbox"> Enjuague caliente inmediato.</li>
+            <li><input type="checkbox"> Limpieza alcalina (recirculación) y enjuague final.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Antes de cada cocción</h3>
+          <ul class="checklist">
+            <li><input type="checkbox"> Verificar limpieza (sin olores ni película).</li>
+            <li><input type="checkbox"> Sanitizar <em>solo</em> lo que toque mosto frío.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="mantenimiento" class="card">
+      <h2>6) Mantenimiento: “piedra de cerveza” (beer stone)</h2>
+      <p class="lead">Cada 1 mes o cada ~3 cocciones.</p>
+      <ul class="checklist">
+        <li><input type="checkbox"> Aplicar <strong>limpieza ácida</strong> (p. ej. cítrico 5–10 g/L en agua tibia) para disolver depósitos minerales.</li>
+        <li><input type="checkbox"> Enjuagar y secar. Evitar contacto prolongado de ácidos con goma/sellos.</li>
+      </ul>
+      <p class="hint">Para inox, los pasivantes comerciales o ácido nítrico diluido son efectivos; seguir estrictamente la hoja técnica.</p>
+    </section>
+
+    <section id="enfriador" class="card">
+      <h2>7) Enfriador de placas: limpieza y sanitización <span class="badge warn">Punto crítico</span></h2>
+      <p class="lead">Elemento con mayor riesgo de biofilm: limpiar <em>inmediatamente</em> tras usar y sanitizar <em>antes</em> del próximo uso.</p>
+
+      <h3>Después de usar</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Enjuagar con agua lo más caliente posible hasta que salga claro.</li>
+      </ul>
+
+      <h3>Limpieza alcalina por recirculación</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Preparar <strong>PBW 10–15 g/L</strong> (50–60 °C).</li>
+        <li><input type="checkbox"> <strong>Recircular 20–30 min</strong> en circuito cerrado (olla → bomba → enfriador → olla).</li>
+        <li><input type="checkbox"> Cambiar el sentido y repetir 5–10 min para barrer puntos muertos.</li>
+      </ul>
+
+      <h3>Enjuague</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Enjuagar con agua clara varios minutos en ambos sentidos.</li>
+      </ul>
+
+      <h3>Sanitización previa al uso</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Hacer pasar <strong>Star San</strong> (según etiqueta, <em>contacto 1–2 min</em>) o <strong>ácido peracético</strong> (0,1–0,2%).</li>
+        <li><input type="checkbox"> Drenar por gravedad; <strong>no enjuagar</strong> si es “no rinse”.</li>
+      </ul>
+
+      <div class="note danger">
+        <strong>Nunca</strong> dejes el enfriador con líquidos estancados. Guardar drenado y, si es posible, purgar con aire/CO₂ para secado rápido.
+      </div>
+    </section>
+
+    <section id="cobre" class="card">
+      <h2>8) Si el enfriador tiene cobre (o soldaduras con cobre)</h2>
+      <ul>
+        <li>El cobre puede oxidarse (verdín) y aportar sabores/metales si se acumula.</li>
+        <li>Cada cierto uso, pasar una <strong>limpieza ácida suave</strong> (p. ej. cítrico 3–5 g/L, 5–10 min) para remover óxidos.</li>
+        <li>Enjuagar muy bien y <strong>guardar seco</strong>.</li>
+      </ul>
+      <p class="hint">Trazas pequeñas de cobre no son problema; la acumulación sí. La clave es limpieza + secado.</p>
+    </section>
+
+    <section class="card">
+      <h2>Materiales y concentraciones (resumen rápido)</h2>
+      <ul>
+        <li><strong>Detergente alcalino (PBW o similar):</strong> 10–15 g/L en agua caliente (50–65 °C).</li>
+        <li><strong>Star San:</strong> seguir etiqueta del producto; contacto típico 1–2 min; no enjuagar.</li>
+        <li><strong>Ácido peracético uso cervecero:</strong> 0,1–0,2% (1–2 mL/L); contacto 2–5 min; no enjuagar.</li>
+        <li><strong>Ácido cítrico (limpieza ácida suave):</strong> 3–10 g/L según objetivo (óxidos vs beer stone ligera).</li>
+      </ul>
+      <p class="hint">Siempre validá con la hoja técnica del producto que estés usando.</p>
+    </section>
+
+    <footer class="wrap" style="padding-top:0">
+      <p class="hint">Versión: Casa cervecera · Checklists interactivos (podés imprimir: oculta el índice automáticamente).</p>
+    </footer>
+  </main>
+</body>
+</html>

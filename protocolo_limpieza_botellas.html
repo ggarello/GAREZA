@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Protocolo: Limpieza y Sanitización de Botellas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#f7f7f9; --ink:#222; --muted:#666; --card:#fff; --border:#e8e8ef; --accent:#0b7fab; --ok:#2e7d32; --warn:#c62828;
+      --r:14px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.45}
+    header{position:sticky; top:0; background:rgba(255,255,255,.85); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid var(--border); z-index:10}
+    .wrap{max-width:880px; margin:0 auto; padding:22px}
+    h1{margin:.2rem 0 0; font-size:clamp(22px,3.5vw,34px)}
+    .sub{margin:.2rem 0 0; color:var(--muted)}
+    section.card{background:var(--card); border:1px solid var(--border); border-radius:var(--r); padding:18px 18px 8px; margin:18px 0}
+    h2{margin:0 0 8px; font-size:22px}
+    h3{margin:14px 0 8px; font-size:18px}
+    ol{margin:.3rem 0 1rem 1.2rem}
+    li{margin:.35rem 0}
+    .grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .note{border-left:4px solid var(--accent); background:#eef7fb; padding:10px 12px; border-radius:8px; margin:.8rem 0}
+    .danger{border-left:4px solid var(--warn); background:#fdecec}
+    .badge{display:inline-block; font-size:.78rem; padding:3px 8px; border-radius:999px; border:1px solid var(--border); background:#fff; color:var(--muted); margin-left:6px}
+    code{background:#f3f3f6; border:1px solid var(--border); padding:.08rem .35rem; border-radius:6px}
+    @media print{header{position:static; backdrop-filter:none} .wrap{padding:0} a{color:#000; text-decoration:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Limpieza y Sanitización de Botellas</h1>
+      <p class="sub">Proceso estandarizado para reutilizar botellas sin contaminación</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="card">
+      <h2>1) Pre-limpieza (inmediata tras vaciar)</h2>
+      <ol>
+        <li>Enjuagar 2–3 veces con <strong>agua caliente</strong> para remover sedimento.</li>
+        <li>Escurrir y guardar <strong>boca abajo</strong> en canasto limpio.</li>
+      </ol>
+      <div class="note">
+        Si hacés esto siempre, evitás moho y el lavado posterior es mucho más rápido.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2) Limpieza profunda (previa al re-uso)</h2>
+      <div class="grid">
+        <div>
+          <h3>Opción A · Alcalino oxigenado (PBW/PLC)</h3>
+          <ol>
+            <li>Preparar <strong>7–10 g/L</strong> en agua a <strong>50–60 °C</strong>.</li>
+            <li>Sumergir o llenar botellas y dejar <strong>20–30 min</strong>.</li>
+            <li>Cepillar si hay incrustaciones.</li>
+            <li>Enjuagar muy bien con agua caliente hasta sin restos jabonosos.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Opción B · Soda cáustica (suciedad pesada)</h3>
+          <ol>
+            <li>Preparar <strong>1–2 %</strong> de hidróxido de sodio en agua tibia (agregar <em>siempre</em> la soda al agua).</li>
+            <li>Remojo <strong>15–20 min</strong> y cepillado si hace falta.</li>
+            <li>Enjuagar abundantemente hasta pH neutro.</li>
+          </ol>
+          <div class="note danger"><strong>Seguridad:</strong> guantes, gafas, ventilación. No mezclar con ácidos.</div>
+        </div>
+      </div>
+      <h3>Control</h3>
+      <ol>
+        <li>Revisar contra la luz: si ves manchas, sarro o moho → repetir limpieza.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>3) Sanitización (justo antes de envasar) <span class="badge">No enjuagar</span></h2>
+      <div class="grid">
+        <div>
+          <h3>Ácido peracético (reemplaza Star San)</h3>
+          <ol>
+            <li>Preparar <strong>0,1–0,2 %</strong> (1–2 mL/L si tu producto es al 5 %).</li>
+            <li>Llenar o rociar el interior (sulfatador/enjuagador ayuda mucho).</li>
+            <li>Dejar <strong>2–3 min</strong> de contacto.</li>
+            <li>Escurrir boca abajo. <strong>No enjuagar.</strong></li>
+          </ol>
+        </div>
+        <div>
+          <h3>Star San (alternativa)</h3>
+          <ol>
+            <li>Preparar <strong>~1–1,5 mL/L</strong> (pH &lt; 3).</li>
+            <li>Contacto <strong>1–2 min</strong>. Espuma = OK.</li>
+            <li>Escurrir sin enjuagar.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="note">Sanitizá también tapas/coronitas y el pico/caña de llenado.</div>
+    </section>
+
+    <section class="card">
+      <h2>4) Secado y envasado</h2>
+      <ol>
+        <li>Escurrir en <strong>escurridor de botellas</strong> o canasto limpio.</li>
+        <li>Envasar <strong>de inmediato</strong> para evitar recontaminación por polvo.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Extras útiles</h2>
+      <div class="grid">
+        <div>
+          <h3>Etiquetas y pegamentos</h3>
+          <ol>
+            <li>Agua caliente + <strong>bicarbonato</strong> o un chorrito de cáustica para ablandar.</li>
+            <li>Raspar con espátula plástica; enjuagar.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Equipos que aceleran</h3>
+          <ol>
+            <li><strong>Sulfatador/enjuagador</strong> de botellas.</li>
+            <li><strong>Escurridor tipo árbol</strong>.</li>
+            <li>Palangana o bañera para tandas grandes.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Resumen de soluciones</h2>
+      <ol>
+        <li><strong>PBW/PLC:</strong> 7–10 g/L · 50–60 °C · 20–30 min.</li>
+        <li><strong>Soda cáustica:</strong> 1–2 % · 15–20 min · enjuague a pH neutro.</li>
+        <li><strong>Peracético:</strong> 0,1–0,2 % · 2–3 min · sin enjuague.</li>
+        <li><strong>Star San:</strong> ~1–1,5 mL/L · 1–2 min · sin enjuague.</li>
+      </ol>
+    </section>
+
+    <footer class="wrap" style="padding-top:0">
+      <p class="sub">Checklist imprimible · Adaptá tiempos según suciedad y etiqueta del producto.</p>
+    </footer>
+  </main>
+</body>
+</html>

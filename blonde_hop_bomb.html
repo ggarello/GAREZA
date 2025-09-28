@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Blonde Ale “Hop Bomb Light” (30 L) · Receta + Cronograma de Brewday</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#f7f7f9; --ink:#222; --muted:#666; --card:#fff; --border:#e8e8ef; --accent:#0b7fab; --ok:#2e7d32; --warn:#c62828;
+      --r:14px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.45}
+    header{position:sticky; top:0; background:rgba(255,255,255,.85); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid var(--border); z-index:10}
+    .wrap{max-width:940px; margin:0 auto; padding:22px}
+    h1{margin:.2rem 0 0; font-size:clamp(22px,3.5vw,34px)}
+    .sub{margin:.2rem 0 0; color:var(--muted)}
+    nav.toc{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin:14px 0 0}
+    nav.toc a{text-decoration:none; color:var(--accent); background:var(--card); border:1px solid var(--border); padding:10px 12px; border-radius:10px}
+    section.card{background:var(--card); border:1px solid var(--border); border-radius:var(--r); padding:18px 18px 8px; margin:18px 0}
+    h2{margin:0 0 10px; font-size:22px}
+    h3{margin:14px 0 8px; font-size:18px}
+    p.lead{margin:.2rem 0 1rem; color:var(--muted)}
+    ul,ol{margin:.2rem 0 1rem 1.2rem}
+    li{margin:.35rem 0}
+    .grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .badge{display:inline-block; font-size:.78rem; padding:3px 8px; border-radius:999px; border:1px solid var(--border); background:#fff; color:var(--muted); margin-left:6px}
+    .note{border-left:4px solid var(--accent); background:#eef7fb; padding:10px 12px; border-radius:8px; margin:.8rem 0}
+    .danger{border-left:4px solid var(--warn); background:#fdecec}
+    .ok{color:var(--ok)}
+    .kv{display:grid; grid-template-columns: 180px 1fr; gap:8px; margin:.3rem 0}
+    code{background:#f3f3f6; border:1px solid var(--border); padding:.08rem .35rem; border-radius:6px}
+    .checklist li{list-style:none; display:flex; gap:10px; align-items:flex-start}
+    .checklist input[type="checkbox"]{margin-top:3px; transform:scale(1.15)}
+    .table{width:100%; border-collapse:collapse; margin:.5rem 0 1rem}
+    .table th,.table td{border:1px solid var(--border); padding:8px 10px; text-align:left}
+    .table th{background:#fafafd}
+    @media print{
+      header{position:static; backdrop-filter:none}
+      nav.toc{display:none}
+      body{background:#fff}
+      .wrap{padding:0}
+      a{color:#000; text-decoration:none}
+      .card{page-break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Blonde Ale “Hop Bomb Light”</h1>
+      <p class="sub">Receta moderna y hop-forward con Citra + Simcoe · Lote 30 L · Whirlpool + doble dry hop</p>
+      <nav class="toc">
+        <a href="#resumen">1. Resumen del lote</a>
+        <a href="#agua">2. Agua y objetivos</a>
+        <a href="#maltas">3. Maltas</a>
+        <a href="#mash">4. Macerado y lavado</a>
+        <a href="#hops">5. Lúpulos (whirlpool + DH)</a>
+        <a href="#yeast">6. Levadura</a>
+        <a href="#ferm">7. Fermentación</a>
+        <a href="#packaging">8. Envasado</a>
+        <a href="#brewday">9. Cronograma de brewday</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="resumen" class="card">
+      <h2>1) Resumen del lote</h2>
+      <div class="grid">
+        <div>
+          <div class="kv"><strong>Tamaño (FV):</strong> <span>30 L</span></div>
+          <div class="kv"><strong>Eficiencia:</strong> <span>70 %</span></div>
+          <div class="kv"><strong>OG:</strong> <span>1.046–1.047</span></div>
+          <div class="kv"><strong>FG:</strong> <span>1.009–1.010</span></div>
+          <div class="kv"><strong>ABV estimado:</strong> <span>~4.7–4.8 %</span></div>
+        </div>
+        <div>
+          <div class="kv"><strong>IBU (solo whirlpool):</strong> <span>25–28</span></div>
+          <div class="kv"><strong>SRM (color):</strong> <span>~4 (dorado muy claro)</span></div>
+          <div class="kv"><strong>Equipo:</strong> <span>Olla hervor 65 L · bomba · enfriador de placas</span></div>
+          <div class="kv"><strong>Estilo base:</strong> <span>Blonde Ale lupulada (hop-forward)</span></div>
+        </div>
+      </div>
+      <div class="note">Perfil sensorial: cuerpo bajo, final seco y muy refrescante. Aroma intenso cítrico/tropical (Citra) y resinoso/frutal (Simcoe).</div>
+    </section>
+
+    <section id="agua" class="card">
+      <h2>2) Agua y objetivos</h2>
+      <p class="lead">Ligero énfasis en sulfatos para resaltar el lúpulo, sin perder suavidad.</p>
+      <ul>
+        <li><strong>Objetivo guía:</strong> Ca 80–110 ppm · Mg 10–20 · Na ≤30 · Cl 80–100 · SO₄ 150–200 (SO₄:Cl ≈ 1.5–2:1).</li>
+        <li>Ajustar pH de macerado a <strong>5.3–5.4</strong> (a 20 °C) con ácido láctico/fosfórico si hace falta.</li>
+      </ul>
+    </section>
+
+    <section id="maltas" class="card">
+      <h2>3) Maltas</h2>
+      <table class="table">
+        <thead><tr><th>Grano</th><th>Cantidad</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td>Pale Ale (2-row)</td><td><strong>6.30 kg</strong></td><td>Base limpia y fermentable; soporte neutro para el lúpulo.</td></tr>
+          <tr><td>Vienna</td><td><strong>0.25 kg</strong></td><td>Toque sutil de miel/pan para evitar sensación aguada.</td></tr>
+          <tr><td><em>Carapils/Carahell</em></td><td><strong>0.00 kg</strong></td><td>Eliminado para aligerar cuerpo y aumentar tomabilidad.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="mash" class="card">
+      <h2>4) Macerado y lavado</h2>
+      <ul>
+        <li><strong>Relación agua/grano:</strong> ~3.0 L/kg → <strong>19 L</strong> de agua de macerado.</li>
+        <li><strong>Mash:</strong> 66 °C por 60 min (opcional prueba de yodo al final).</li>
+        <li><strong>Mash-out:</strong> 76 °C por 10 min (opcional, mejora la lauter).</li>
+        <li><strong>Lavado:</strong> ~<strong>20 L</strong> hasta obtener ~<strong>40 L</strong> prehervor.</li>
+        <li><strong>Hervor:</strong> 60 min (sin adiciones tempranas).</li>
+      </ul>
+      <div class="note">Mantené la ebullición viva pero controlada para limitar la evaporación y evitar DMS.</div>
+    </section>
+
+    <section id="hops" class="card">
+      <h2>5) Lúpulos (whirlpool + dry hop) <span class="badge">Citra &amp; Simcoe</span></h2>
+      <h3>Whirlpool (80 °C, 20 min)</h3>
+      <ul>
+        <li><strong>Citra</strong> — 45 g</li>
+        <li><strong>Simcoe</strong> — 30 g</li>
+      </ul>
+      <p class="lead">Aporta la mayor parte del amargor suave (25–28 IBU) y un bloque de sabor/aroma potente.</p>
+
+      <h3>Dry Hop 1 (día 4, fermentación activa)</h3>
+      <ul>
+        <li><strong>Citra</strong> — 35 g</li>
+        <li><strong>Simcoe</strong> — 25 g</li>
+      </ul>
+      <p class="lead">Biotransformación: potencia notas frutales y mantiene amargor bajo.</p>
+
+      <h3>Dry Hop 2 (día 7–8, 3–4 días)</h3>
+      <ul>
+        <li><strong>Citra</strong> — 45 g</li>
+        <li><strong>Simcoe</strong> — 30 g</li>
+      </ul>
+      <p class="lead">Capa de aroma final explosiva. Evitar más de 4 días para reducir extracción vegetal.</p>
+
+      <div class="note">Total DH ≈ <strong>135 g (4.5 g/L)</strong>.</div>
+    </section>
+
+    <section id="yeast" class="card">
+      <h2>6) Levadura</h2>
+      <ul>
+        <li><strong>US-05 (SafAle)</strong> — 2 sobres hidratados (fermentación limpia a 18–20 °C).</li>
+        <li><em>Alternativa:</em> Lallemand <strong>Verdant IPA</strong> si buscás ésteres frutales (menos “light” en percepción).</li>
+      </ul>
+    </section>
+
+    <section id="ferm" class="card">
+      <h2>7) Fermentación</h2>
+      <ol>
+        <li>Oxigenar mosto frío y limpio. Inocular a <strong>18–19 °C</strong>.</li>
+        <li><strong>Día 4:</strong> Dry Hop 1 (Citra 35 g + Simcoe 25 g).</li>
+        <li><strong>Día 7–8:</strong> Dry Hop 2 (Citra 45 g + Simcoe 30 g) por 3–4 días.</li>
+        <li>Cold crash: <strong>2–4 °C</strong> por 48–72 h.</li>
+        <li>Estabilizar FG (1.009–1.010) antes de envasar.</li>
+      </ol>
+    </section>
+
+    <section id="packaging" class="card">
+      <h2>8) Envasado</h2>
+      <ul>
+        <li><strong>Carbonatación objetivo:</strong> 2.4 vol CO₂.</li>
+        <li><strong>Priming (dextrosa):</strong> ~<strong>165 g</strong> para 30 L (≈5.5 g/L), ajustar por temperatura final.</li>
+        <li>Sanitizar botellas/coronitas/cañas de llenado. <em>Secuencia sugerida:</em> limpieza alcalina → enjuague → sanitizante no-rinse → escurrido.</li>
+      </ul>
+      <p class="note">Evitar oxígeno en trasvase y embotellado. Llenado suave, cabezal de CO₂ si está disponible.</p>
+    </section>
+
+    <section id="brewday" class="card">
+      <h2>9) Cronograma de Brewday (guía paso a paso)</h2>
+      <p class="lead">Marcá cada ítem al avanzar. Ajustá tiempos a tu equipo.</p>
+
+      <h3>Pre-cocción (−0:45 a 0:00)</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"> Calentar <strong>19 L</strong> de agua a ~72 °C (para macerar a 66 °C).</li>
+        <li><input type="checkbox"> Moler maltas (Pale 6.30 kg + Vienna 0.25 kg).</li>
+        <li><input type="checkbox"> Verificar sanitización de todo lo que tocará <em>mosto frío</em> más tarde.</li>
+      </ul>
+
+      <h3>Macerado (0:00 a 1:10)</h3>
+        <ul class="checklist">
+          <li><input type="checkbox"> Iniciar mash a <strong>66 °C · 60 min</strong>.</li>
+          <li><input type="checkbox"> (Opcional) Mash-out <strong>76 °C · 10 min</strong>.</li>
+        </ul>
+
+      <h3>Lauter y lavado (1:10 a 1:50)</h3>
+        <ul class="checklist">
+          <li><input type="checkbox"> Recircular claro y transferir al hervidor.</li>
+          <li><input type="checkbox"> Lavar con ~<strong>20 L</strong> hasta ~<strong>40 L</strong> prehervor.</li>
+        </ul>
+
+      <h3>Hervor (1:50 a 2:50)</h3>
+        <ul class="checklist">
+          <li><input type="checkbox"> Hervir <strong>60 min</strong> (sin adiciones tempranas).</l
